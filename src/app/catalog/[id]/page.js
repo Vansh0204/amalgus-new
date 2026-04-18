@@ -3,6 +3,7 @@ import { glassProducts } from '@/data/glassProducts';
 import { vendors } from '@/data/vendors';
 import { notFound } from 'next/navigation';
 import VendorComparison from '@/components/VendorComparison';
+import PlaceOrderModal from '@/components/PlaceOrderModal';
 
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;
@@ -90,13 +91,16 @@ export default async function ProductDetailPage({ params }) {
               <h3 className="text-2xl font-bold mb-4">Request a Site Measurement</h3>
               <p className="text-gray-400 text-sm mb-8">Get exact pricing from 3 verified local fabricators within 24 hours.</p>
               
-              <div className="flex gap-4">
-                <Link href="/estimate" className="flex-1 bg-glass-blue text-navy py-4 rounded-xl font-black text-center hover:scale-105 transition-transform flex items-center justify-center">
-                  Instant Estimate
-                </Link>
-                <Link href="/service-partners" className="flex-1 bg-white/10 border border-white/20 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors text-center text-white">
-                  Contact Expert
-                </Link>
+              <div className="flex flex-col gap-3">
+                <PlaceOrderModal product={product} />
+                <div className="flex gap-3">
+                  <Link href="/estimate" className="flex-1 bg-white/10 border border-white/20 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors text-center text-white text-sm">
+                    Instant Estimate
+                  </Link>
+                  <Link href="/service-partners" className="flex-1 bg-white/10 border border-white/20 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors text-center text-white text-sm">
+                    Contact Expert
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
