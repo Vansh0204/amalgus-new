@@ -80,6 +80,12 @@ export default function SmartMatchPage() {
             placeholder="e.g. I want safe glass for my staircase railing..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleMatch();
+              }
+            }}
           />
           <button 
             onClick={() => handleMatch()}
