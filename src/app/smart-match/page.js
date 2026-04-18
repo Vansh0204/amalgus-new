@@ -23,12 +23,12 @@ export default function SmartMatchPage() {
   const resultsRef = useRef(null);
 
   useEffect(() => {
-    if (results.length > 0 && resultsRef.current) {
+    if (!loading && query && resultsRef.current) {
       setTimeout(() => {
         resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
-  }, [results]);
+  }, [results, loading]);
 
   const handleMatch = async (inputQuery = query) => {
     if (!inputQuery.trim()) return;
@@ -190,7 +190,7 @@ export default function SmartMatchPage() {
 
         {/* Fallback for no results */}
         {!loading && query && results.length === 0 && (
-          <div className="text-center py-12">
+          <div ref={resultsRef} className="text-center py-12 scroll-mt-28">
             <div className="text-4xl mb-4">🤔</div>
             <h3 className="text-xl font-bold text-navy mb-2">We couldn't find a perfect match.</h3>
             <p className="text-gray-500">Try rephrasing your requirement or contact our human experts.</p>
