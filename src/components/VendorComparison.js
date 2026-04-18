@@ -1,7 +1,9 @@
 "use client";
 import { useState, useMemo } from 'react';
+import { useToast } from '@/components/ToastProvider';
 
 export default function VendorComparison({ vendors, basePrice }) {
+  const { showToast } = useToast();
   const [sortKey, setSortKey] = useState('price');
 
   const vendorList = useMemo(() => {
@@ -80,7 +82,10 @@ export default function VendorComparison({ vendors, basePrice }) {
                   {vendor.deliveryDays} Days
                 </td>
                 <td className="px-8 py-6 text-right">
-                  <button className="bg-white border border-gray-200 px-6 py-2 rounded-lg text-xs font-bold text-navy hover:bg-navy hover:text-white transition-all shadow-sm">
+                  <button 
+                    onClick={() => showToast(`Quote request sent to ${vendor.vendorName}!`)}
+                    className="bg-white border border-gray-200 px-6 py-2 rounded-lg text-xs font-bold text-navy hover:bg-navy hover:text-white transition-all shadow-sm"
+                  >
                     Get Quote
                   </button>
                 </td>

@@ -124,7 +124,7 @@ function CatalogContent() {
             <div className="bg-navy p-6 rounded-3xl text-white">
               <h4 className="font-bold mb-2">Expert Consultation?</h4>
               <p className="text-xs text-gray-400 mb-4 opacity-80">Our technical team is available 9am-6pm IST.</p>
-              <button className="w-full bg-glass-blue text-navy py-3 rounded-xl font-bold text-sm">Request Callback</button>
+              <button onClick={() => showToast("Callback scheduled! Our expert will call between 9am-6pm IST.")} className="w-full bg-glass-blue text-navy py-3 rounded-xl font-bold text-sm">Request Callback</button>
             </div>
           </aside>
 

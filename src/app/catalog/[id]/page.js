@@ -94,9 +94,9 @@ export default async function ProductDetailPage({ params }) {
                 <Link href="/estimate" className="flex-1 bg-glass-blue text-navy py-4 rounded-xl font-black text-center hover:scale-105 transition-transform flex items-center justify-center">
                   Instant Estimate
                 </Link>
-                <button className="flex-1 bg-white/10 border border-white/20 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors">
+                <Link href="/service-partners" className="flex-1 bg-white/10 border border-white/20 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors text-center text-white">
                   Contact Expert
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default async function ProductDetailPage({ params }) {
                 <div className="w-12 h-12 bg-gray-50 rounded-xl mb-4 flex items-center justify-center text-xl">📦</div>
                 <h4 className="font-bold text-navy mb-2">{item}</h4>
                 <p className="text-sm text-gray-500 mb-6">Optimized for use with {product.name} projects.</p>
-                <button className="text-glass-blue font-bold text-sm hover:underline">View Product →</button>
+                <Link href="/catalog" className="text-glass-blue font-bold text-sm hover:underline">View Product →</Link>
               </div>
             ))}
           </div>
