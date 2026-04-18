@@ -25,7 +25,9 @@ export default function Home() {
         role === 'Dealer' ? 'bg-[#0A1628]' : 'bg-navy'
       }`}>
         <div className="absolute top-0 right-0 w-1/3 h-full bg-glass-blue/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+          
+          {/* Left Text Column */}
           <div className="max-w-3xl">
             <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-glass-blue text-sm font-bold mb-8 backdrop-blur-sm uppercase tracking-widest">
               AmalGus for {role || 'Professionals'}
@@ -56,6 +58,33 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          {/* Right Visual Column */}
+          <div className="hidden lg:block relative w-full max-w-md perspective-1000">
+            <div className="relative w-full aspect-[4/5] animate-in fade-in zoom-in duration-1000 delay-300">
+              {/* Back Layer */}
+              <div className="absolute inset-0 bg-white/5 border border-white/10 rounded-[40px] backdrop-blur-md transform rotate-12 translate-x-12 translate-y-6 transition-transform duration-700 hover:rotate-6 hover:translate-x-6 shadow-2xl"></div>
+              {/* Middle Layer */}
+              <div className="absolute inset-0 bg-glass-blue/10 border border-glass-blue/20 rounded-[40px] backdrop-blur-xl transform -rotate-6 -translate-x-6 translate-y-2 transition-transform duration-700 hover:-rotate-3 hover:-translate-x-3 shadow-2xl"></div>
+              {/* Front Main Glass Plate */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 border border-white/30 rounded-[40px] backdrop-blur-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col justify-between p-10 transform transition-transform duration-700 hover:scale-105 hover:-translate-y-4">
+                <div className="flex justify-between items-start">
+                  <div className="w-16 h-16 rounded-2xl bg-glass-blue flex items-center justify-center shadow-lg shadow-glass-blue/20">
+                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                  </div>
+                  <div className="px-4 py-1.5 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-xs font-black uppercase tracking-widest animate-pulse">
+                    Matched
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-3xl font-black text-white mb-2 leading-tight">Smart<br/>Thickness<br/>Detection</h3>
+                  <p className="text-gray-300/80 text-sm font-medium">Powered by Groq LLM & Industry Safety Rules</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </section>
 
