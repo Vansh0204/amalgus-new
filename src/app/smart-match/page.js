@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ToastProvider';
 import { getLocalMatch, getAiMatch } from '@/data/matchLogic';
@@ -19,7 +19,8 @@ export default function SmartMatchPage() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [matchType, setMatchType] = useState(null); // 'local' or 'ai'
+  const [matchType, setMatchType] = useState(null);
+  const resultsRef = useRef(null);
 
   const handleMatch = async (inputQuery = query) => {
     if (!inputQuery.trim()) return;
@@ -34,12 +35,14 @@ export default function SmartMatchPage() {
       setResults(localResults);
       setMatchType('local');
       setLoading(false);
+      setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     } else {
       // Fallback to AI
       const aiResults = await getAiMatch(inputQuery);
       if (aiResults) {
         setResults(aiResults);
         setMatchType('ai');
+        setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
       } else {
         setResults([]);
         setMatchType(null);
@@ -120,7 +123,7 @@ export default function SmartMatchPage() {
 
         {/* Results Section */}
         {results.length > 0 && (
-          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-5 duration-700">
+          <div ref={resultsRef} className="space-y-8 animate-in fade-in slide-in-from-bottom-5 duration-700 scroll-mt-28">
             <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <h2 className="text-2xl font-bold text-navy">Recommended Solutions</h2>
               <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${matchType === 'ai' ? 'bg-purple-50 text-purple-600' : 'bg-green-50 text-green-600'}`}>
