@@ -2,10 +2,12 @@
 import Link from "next/link";
 import { glassProducts } from "@/data/glassProducts";
 import { useRole } from "@/components/RoleProvider";
+import { useToast } from "@/components/ToastProvider";
 import { dailyRates } from "@/data/dailyRates";
 
 export default function Home() {
   const { role } = useRole();
+  const { showToast } = useToast();
 
   // Role-based content filtering
   const featuredProducts = (role === 'Homeowner') 
@@ -146,9 +148,21 @@ export default function Home() {
                  role === 'Builder' ? 'Get a dedicated procurement manager to audit your BOM and optimize project costs.' :
                  'Get WhatsApp alerts for daily factory rate changes and stock availability.'}
               </p>
-              <button className="bg-navy text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-glass-blue hover:text-navy transition-all shadow-xl">
-                {role === 'Dealer' ? 'Subscribe to Ticker' : 'Talk to Expert'}
-              </button>
+              {role === 'Dealer' ? (
+                <button 
+                  onClick={() => showToast("Subscribed to WhatsApp Price Ticker!", "success")}
+                  className="bg-navy text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-glass-blue hover:text-navy transition-all shadow-xl"
+                >
+                  Subscribe to Ticker
+                </button>
+              ) : (
+                <Link 
+                  href="/smart-match"
+                  className="bg-navy text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-glass-blue hover:text-navy transition-all shadow-xl inline-block"
+                >
+                  Talk to Expert
+                </Link>
+              )}
             </div>
             <div className="w-full lg:w-1/3 aspect-square bg-navy rounded-3xl flex items-center justify-center text-9xl">
               {role === 'Homeowner' ? '🏠' : role === 'Architect' ? '📐' : role === 'Builder' ? '🏗️' : '🤝'}
