@@ -44,7 +44,7 @@ export function RoleProvider({ children }) {
       {isModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-navy/80 backdrop-blur-xl" />
-          <div className="bg-white rounded-[48px] p-12 max-w-4xl w-full relative z-10 shadow-2xl animate-in zoom-in-95 duration-500">
+          <div className="bg-white rounded-[32px] md:rounded-[48px] p-8 md:p-12 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative z-10 shadow-2xl animate-in zoom-in-95 duration-500">
             <h2 className="text-4xl font-black text-navy text-center mb-4">Welcome to AmalGus</h2>
             <p className="text-gray-500 text-center mb-12 text-lg">Help us customize your experience. Who are you?</p>
             
