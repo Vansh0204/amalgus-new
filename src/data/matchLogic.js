@@ -99,7 +99,7 @@ export async function getAiMatch(input) {
         messages: [
           {
             role: "system",
-            content: `You are a glass industry expert. Based on the user requirement, recommend the best glass type from this list: [${productList}]. Respond ONLY in JSON: { "recommendation": "name", "reason": "1-sentence reasoning", "thickness": "suggested thickness", "priceRange": "range from list" }`
+            content: `You are a glass industry expert. Based on the user requirement, recommend the best glass type from this list: [${productList}]. If the user's query is completely unrelated to glass, construction, or building materials (e.g., "hello", "how are you"), respond ONLY with {"error": "irrelevant"}. Otherwise, respond ONLY in JSON: { "recommendation": "name", "reason": "1-sentence reasoning", "thickness": "suggested thickness", "priceRange": "range from list" }`
           },
           {
             role: "user",
@@ -123,6 +123,11 @@ export async function getAiMatch(input) {
     }
 
     const result = JSON.parse(data.choices[0].message.content);
+    
+    if (result.error) {
+       return null;
+    }
+
     return [{
       name: result.recommendation || "Custom Glass Solution",
       reason: result.reason || "Matched based on your specific requirements.",
