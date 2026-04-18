@@ -66,20 +66,30 @@ export default function Home() {
               <div className="absolute inset-0 bg-white/5 border border-white/10 rounded-[40px] backdrop-blur-md transform rotate-12 translate-x-12 translate-y-6 transition-transform duration-700 hover:rotate-6 hover:translate-x-6 shadow-2xl"></div>
               {/* Middle Layer */}
               <div className="absolute inset-0 bg-glass-blue/10 border border-glass-blue/20 rounded-[40px] backdrop-blur-xl transform -rotate-6 -translate-x-6 translate-y-2 transition-transform duration-700 hover:-rotate-3 hover:-translate-x-3 shadow-2xl"></div>
-              {/* Front Main Glass Plate */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 border border-white/30 rounded-[40px] backdrop-blur-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col justify-between p-10 transform transition-transform duration-700 hover:scale-105 hover:-translate-y-4">
-                <div className="flex justify-between items-start">
-                  <div className="w-16 h-16 rounded-2xl bg-glass-blue flex items-center justify-center shadow-lg shadow-glass-blue/20">
-                    <svg className="w-8 h-8 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                {/* Front Main Glass Plate */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 border border-white/30 rounded-[40px] backdrop-blur-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] flex flex-col p-8 transform transition-transform duration-700 hover:scale-105 hover:-translate-y-4">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-glass-blue flex items-center justify-center shadow-lg shadow-glass-blue/20">
+                    <svg className="w-7 h-7 text-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                   </div>
-                  <div className="px-4 py-1.5 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-xs font-black uppercase tracking-widest animate-pulse">
+                  <div className="px-3 py-1.5 rounded-full bg-green-500/20 border border-green-500/30 text-green-400 text-[10px] font-black uppercase tracking-widest animate-pulse">
                     Matched
                   </div>
                 </div>
                 
-                <div>
-                  <h3 className="text-3xl font-black text-white mb-2 leading-tight">Smart<br/>Thickness<br/>Detection</h3>
-                  <p className="text-gray-300/80 text-sm font-medium">Powered by Groq LLM & Industry Safety Rules</p>
+                {/* Inner Image */}
+                <div className="flex-1 w-full bg-black/20 rounded-3xl overflow-hidden mb-6 border border-white/10 relative shadow-inner">
+                  <img 
+                    src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&w=400&q=80" 
+                    alt="Architectural Glass" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent"></div>
+                </div>
+                
+                <div className="mt-auto">
+                  <h3 className="text-2xl font-black text-white mb-1 leading-tight tracking-tight">Smart Thickness<br/>Detection</h3>
+                  <p className="text-gray-300/70 text-xs font-medium uppercase tracking-widest">Powered by Groq LLM</p>
                 </div>
               </div>
             </div>
