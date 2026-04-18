@@ -77,14 +77,29 @@ export default function Home() {
                   </div>
                 </div>
                 
-                {/* Inner Image */}
-                <div className="flex-1 w-full bg-black/20 rounded-3xl overflow-hidden mb-6 border border-white/10 relative shadow-inner">
-                  <img 
-                    src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?auto=format&fit=crop&w=400&q=80" 
-                    alt="Architectural Glass" 
-                    className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent"></div>
+                {/* Inner Graphic */}
+                <div className="flex-1 w-full bg-navy/50 rounded-3xl overflow-hidden mb-6 border border-white/10 relative shadow-inner flex items-center justify-center">
+                  <svg viewBox="0 0 100 100" className="w-full h-full opacity-90 transition-transform duration-1000 hover:scale-110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 100 L35 15 L55 45 Z" fill="url(#grad1)" opacity="0.7"/>
+                    <path d="M25 100 L45 55 L85 100 Z" fill="url(#grad2)" opacity="0.9"/>
+                    <path d="M45 85 L75 25 L100 65 Z" fill="url(#grad1)" opacity="0.6"/>
+                    <path d="M10 45 L35 5 L60 35 Z" fill="url(#grad3)" opacity="0.8"/>
+                    <defs>
+                      <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#38bdf8" />
+                        <stop offset="100%" stopColor="#0a1628" stopOpacity="0"/>
+                      </linearGradient>
+                      <linearGradient id="grad2" x1="0" y1="1" x2="1" y2="0">
+                        <stop offset="0%" stopColor="#818cf8"/>
+                        <stop offset="100%" stopColor="#0a1628" stopOpacity="0.3"/>
+                      </linearGradient>
+                      <linearGradient id="grad3" x1="1" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor="#60a5fa"/>
+                        <stop offset="100%" stopColor="#0a1628" stopOpacity="0.5"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy to-transparent opacity-80"></div>
                 </div>
                 
                 <div className="mt-auto">
