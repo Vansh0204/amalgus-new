@@ -5,10 +5,13 @@ const RoleContext = createContext();
 
 export function RoleProvider({ children }) {
   const [role, setRole] = useState(null);
+  const [user, setUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const savedRole = localStorage.getItem('amalgus-role');
+    const savedUser = localStorage.getItem('amalgus-user');
+    if (savedUser) setUser(JSON.parse(savedUser));
     if (!savedRole) {
       setIsModalOpen(true);
     } else {
@@ -30,8 +33,13 @@ export function RoleProvider({ children }) {
     setIsModalOpen(false);
   };
 
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('amalgus-user');
+  };
+
   return (
-    <RoleContext.Provider value={{ role, changeRole, setIsModalOpen }}>
+    <RoleContext.Provider value={{ role, changeRole, setIsModalOpen, user, setUser, logout }}>
       {children}
       {isModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
