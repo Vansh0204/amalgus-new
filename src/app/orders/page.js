@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const mockOrders = [
@@ -80,15 +80,23 @@ const statusConfig = {
 
 export default function OrdersPage() {
   const [filter, setFilter] = useState("All");
+  const [allOrders, setAllOrders] = useState(mockOrders);
   const statuses = ["All", "Delivered", "In Transit", "Processing", "Cancelled"];
 
-  const filtered = filter === "All" ? mockOrders : mockOrders.filter(o => o.status === filter);
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem('amalgus-orders') || '[]');
+    if (stored.length > 0) {
+      setAllOrders([...stored, ...mockOrders]);
+    }
+  }, []);
+
+  const filtered = filter === "All" ? allOrders : allOrders.filter(o => o.status === filter);
 
   const totals = {
-    orders: mockOrders.length,
-    spent: mockOrders.filter(o => o.status !== "Cancelled").reduce((s, o) => s + o.total, 0),
-    delivered: mockOrders.filter(o => o.status === "Delivered").length,
-    active: mockOrders.filter(o => ["In Transit", "Processing"].includes(o.status)).length,
+    orders: allOrders.length,
+    spent: allOrders.filter(o => o.status !== "Cancelled").reduce((s, o) => s + o.total, 0),
+    delivered: allOrders.filter(o => o.status === "Delivered").length,
+    active: allOrders.filter(o => ["In Transit", "Processing"].includes(o.status)).length,
   };
 
   return (
@@ -186,7 +194,10 @@ export default function OrdersPage() {
                       <p className="text-[10px] text-gray-400 mt-1">{order.date} • {order.vendor}</p>
                     </div>
                     <div>
-                      <p className="font-bold text-navy">{order.product}</p>
+                      <p className="font-bold text-navy flex items-center gap-2">
+                        {order.product}
+                        {order.isNew && <span className="bg-green-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider animate-pulse">New</span>}
+                      </p>
                       <p className="text-[10px] text-gray-500">{order.specs}</p>
                     </div>
                     <p className="font-black text-navy">{order.qty}</p>
