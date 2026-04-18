@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ToastProvider';
 import { getLocalMatch, getAiMatch } from '@/data/matchLogic';
@@ -22,6 +22,14 @@ export default function SmartMatchPage() {
   const [matchType, setMatchType] = useState(null);
   const resultsRef = useRef(null);
 
+  useEffect(() => {
+    if (results.length > 0 && resultsRef.current) {
+      setTimeout(() => {
+        resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [results]);
+
   const handleMatch = async (inputQuery = query) => {
     if (!inputQuery.trim()) return;
     
@@ -35,14 +43,12 @@ export default function SmartMatchPage() {
       setResults(localResults);
       setMatchType('local');
       setLoading(false);
-      setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     } else {
       // Fallback to AI
       const aiResults = await getAiMatch(inputQuery);
       if (aiResults) {
         setResults(aiResults);
         setMatchType('ai');
-        setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
       } else {
         setResults([]);
         setMatchType(null);
