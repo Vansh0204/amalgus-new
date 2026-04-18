@@ -2,8 +2,10 @@
 import { useState } from 'react';
 import { vendors } from '@/data/vendors';
 import { glassProducts } from '@/data/glassProducts';
+import { useToast } from '@/components/ToastProvider';
 
 export default function VendorsPage() {
+  const { showToast } = useToast();
   const [filterCity, setFilterCity] = useState("");
   const [filterType, setFilterType] = useState("");
 
@@ -92,7 +94,10 @@ export default function VendorsPage() {
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Avg Lead Time</p>
                   <p className="font-bold text-navy">{vendor.deliveryDays} Days</p>
                 </div>
-                <button className="bg-navy text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-glass-blue hover:text-navy transition-all shadow-md">
+                <button 
+                  onClick={() => showToast(`Portfolio request sent to ${vendor.vendorName}!`)}
+                  className="bg-navy text-white px-6 py-2.5 rounded-xl text-xs font-bold hover:bg-glass-blue hover:text-navy transition-all shadow-md"
+                >
                   Request Portfolio
                 </button>
               </div>

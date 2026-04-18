@@ -1,8 +1,10 @@
 "use client";
 import { useState } from 'react';
 import { servicePartners } from '@/data/servicePartners';
+import { useToast } from '@/components/ToastProvider';
 
 export default function ServicePartnersPage() {
+  const { showToast } = useToast();
   const [filterCity, setFilterCity] = useState("");
   const [filterType, setFilterType] = useState("");
 
@@ -83,7 +85,10 @@ export default function ServicePartnersPage() {
                 ))}
               </div>
 
-              <button className="w-full bg-navy text-white py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-glass-blue hover:text-navy transition-all shadow-lg">
+              <button 
+                onClick={() => showToast(`Service request sent to ${partner.name}!`)}
+                className="w-full bg-navy text-white py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-glass-blue hover:text-navy transition-all shadow-lg"
+              >
                 Request Service
               </button>
             </div>
